@@ -39,8 +39,21 @@ export default function AdminDashboard() {
   };
 
   useEffect(() => {
+    // Initial fetch
     fetchData();
+
+    // Set up an interval to refresh data every 10 seconds
+    const interval = setInterval(() => {
+      fetchData();
+    }, 10000); 
+
+    // Clean up the interval when the admin leaves the page
+    return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [activeTab]);
 
   const handleAssign = async (issueId) => {
     const techId = selectedTechs[issueId];
