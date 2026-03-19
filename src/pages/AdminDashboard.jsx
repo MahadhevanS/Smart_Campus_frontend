@@ -26,7 +26,7 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       const [statsRes, issuesRes, techRes] = await Promise.all([
-        api.get('/issues/stats'),
+        api.get('/stats'),
         api.get('/issues'),
         api.get('/issues/technicians')
       ]);
